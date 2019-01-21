@@ -4,12 +4,12 @@
     </head>
     <body>
         <?php
-        
- /*       <div>
+        /*
+        <div>
             <h1>As pradedu</h1>
             <h2>O as papildau</h2>
-        </div>
-  */
+        </div>       
+        */
         ?>
         <!--
         <div>
