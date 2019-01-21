@@ -4,11 +4,11 @@
     </head>
     <body>
         <div>
-        <h1>As pradedu</h1>
-        <h2>O as papildau</h2>
+            <h1>As pradedu</h1>
+            <h2>O as papildau</h2>
         </div>
-        <p>
-            As esu tas pana, kuri kalba ir kalba, ir kalba, ir kalba...
-        </p>
+            <p>
+                As esu ta pana, kuri kalba ir kalba, ir kalba, ir kalba...
+            </p>
     </body>
 </html>
