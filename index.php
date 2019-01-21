@@ -3,11 +3,14 @@
         <title>Komentarai</title>
     </head>
     <body>
-        <!--pirmo div'o paaiskinimas labai ilgas-->
-        <div>
+        <?php
+        
+ /*       <div>
             <h1>As pradedu</h1>
             <h2>O as papildau</h2>
         </div>
+  */
+        ?>
         <!--
         <div>
             <h1>As pradedu</h1>
