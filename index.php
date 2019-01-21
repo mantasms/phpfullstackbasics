@@ -1,16 +1,9 @@
-<?php
-date_default_timezone_set("Europe/Vilnius");
-$kelintadienis = date('l');
-$metai = date('Y');
-$menuo = date('m');
-$day = date('d');
-?>
 <html>
 <head>
-    <title>As, <?php print $kelintadienis;?> ir PHP</title>
+    <title><?php print 'As ' . date('l') . ' ir PHP'?></title>
 </head>
 <body>
-    <h1>Mantas - HTML ir PHP asas jau nuo <?php print $metai;?> metu.</h1>
-    <p>Viskas prasidejo <?php print $menuo;?> menesio, <?php print $day;?> diena.</p>
+    <h1><?php print 'Mantas - HTML ir PHP asas jau nuo ' . date('Y') . ' metu' ?></h1>
+    <p><?php print 'Viskas prasidejo ' . date('m') . ' menesio ' .  date('d') . ' diena'?></p>
 </body>
 </html>
