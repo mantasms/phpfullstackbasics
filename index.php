@@ -1,9 +1,9 @@
 <html>
-<head>
-    <title><?php print 'As ' . date('l') . ' ir PHP'?></title>
-</head>
-<body>
-    <h1><?php print 'Mantas - HTML ir PHP asas jau nuo ' . date('Y') . ' metu' ?></h1>
-    <p><?php print 'Viskas prasidejo ' . date('m') . ' menesio ' .  date('d') . ' diena'?></p>
-</body>
+    <head>
+        <title>PHP lydės ir <?php print date('Y.m.d', strtotime('+1 day')) . ' !' ?></title>
+    </head>
+    <body>
+        <h1>Mantas - PHP su manim buvo ir <?php print date('h', strtotime('-1 hour')) . ' valanda!'?></h1>
+        <p><?php print date('Y', strtotime('+1 year')) . ' ne uz kalnu! '?></p>
+    </body>
 </html>
