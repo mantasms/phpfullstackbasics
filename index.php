@@ -1,9 +1,14 @@
 <html>
     <head>
-        <title>PHP lydės ir <?php print date('Y.m.d', strtotime('+1 day')) . ' !' ?></title>
+        <title>Komentarai</title>
     </head>
     <body>
-        <h1>Mantas - PHP su manim buvo ir <?php print date('h', strtotime('-1 hour')) . ' valanda!'?></h1>
-        <p><?php print date('Y', strtotime('+1 year')) . ' ne uz kalnu! '?></p>
+        <div>
+        <h1>As pradedu</h1>
+        <h2>O as papildau</h2>
+        </div>
+        <p>
+            As esu tas pana, kuri kalba ir kalba, ir kalba, ir kalba...
+        </p>
     </body>
 </html>
