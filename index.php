@@ -6,7 +6,7 @@ $sudas4 = rand(301,400);
 ?>
 <html>
     <head>
-        <title>Manto PHP pamokos></title>
+        <title>Manto PHP pamokos</title>
     </head>
     <body>
         <div>
