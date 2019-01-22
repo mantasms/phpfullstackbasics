@@ -13,11 +13,11 @@ $null = null;
     <body>
         <div>
             <h1></h1>
-            <h2><?php print $string ?></h2>
-            <h2><?php print $integer ?></h2>
-            <h2><?php print $float ?></h2>
-            <h2><?php print $boolean ?></h2>
-            <h2><?php print $null ?></h2>       
+            <h2><?php print 'string ' . $string ?></h2>
+            <h2><?php print 'integer ' . $integer ?></h2>
+            <h2><?php print 'float ' . $float ?></h2>
+            <h2><?php print 'boolean ' . $boolean ?></h2>
+            <h2><?php print 'null ' . $null ?></h2>       
         </div>       
     </body>
 </html>
