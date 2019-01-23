@@ -1,16 +1,22 @@
 <?php
-$t = rand(0, 10);
-$text = 'labay';
-for ($x = 1; $x <= $t; $x++) {
-    $text .= 'y';
+$po_alaus = rand(1, 5);
+$dar_alaus = 0;
+$kablys = 1;
+
+for ($x = 1; $x <= $po_alaus; $x++) {
+    $dar_alaus += floor($po_alaus / 2) + $kablys;
+    if ($dar_alaus >= 12) {
+        break;
+    }
 }
 ?>
 <html>
     <head>
-        <title>For ciklai</title>
+        <title>For ciklai su alumi</title>
     </head>
     <body>
-        <h1>As po <?php print $t; ?> dienu praktikos...</h1>
-        <h2><?php print $text; ?> pavarges</h2>
+        <p>
+            Po <?php print $po_alaus; ?> alaus, tiketina dar imsiu <?php print $dar_alaus; ?> alaus
+        </p>
     </body>
 </html>
