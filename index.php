@@ -5,7 +5,7 @@ $kablys = 1;
 
 for ($x = 1; $x <= $po_alaus; $x++) {
     $dar_alaus += floor($po_alaus / 2) + $kablys;
-    if ($dar_alaus >= 12) {
+    if ($dar_alaus + $po_alaus >= 12) {
         break;
     }
 }
