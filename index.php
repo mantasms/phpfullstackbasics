@@ -8,9 +8,8 @@ for ($x = 1; $x <= $kates; $x++) {
         $success = rand(0, 1);
         if ($success) {
             $katasuniai += 1;
-        } else {
             break;
-        }
+        } 
     }
 }
 ?>
