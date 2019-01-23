@@ -1,12 +1,16 @@
 <?php
-$sunny = rand(0,1);
+$t = rand(0, 10);
+$text = 'labay';
+for ($x = 1; $x <= $t; $x++) {
+    $text .= 'y';
+}
 ?>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="/css/main.css">
-        <title>Uzduotis 5</title>
+        <title>For ciklai</title>
     </head>
-    <body>    
-        <div class="<?php print 'sauleta' . $sunny; ?>"></div>
+    <body>
+        <h1>As po <?php print $t; ?> dienu praktikos...</h1>
+        <h2><?php print $text; ?> koks pavarges</h2>
     </body>
 </html>
