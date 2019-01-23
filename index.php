@@ -11,6 +11,6 @@ for ($x = 1; $x <= $t; $x++) {
     </head>
     <body>
         <h1>As po <?php print $t; ?> dienu praktikos...</h1>
-        <h2><?php print $text; ?> koks pavarges</h2>
+        <h2><?php print $text; ?> pavarges</h2>
     </body>
 </html>
