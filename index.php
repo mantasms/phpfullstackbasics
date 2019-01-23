@@ -1,18 +1,16 @@
 <?php
-$months = 12;
-$kisene = 1000;
-$alga = 700;
-$islaidos = 0;
+$days = 365;
+$cizos_mon_thu = rand(7, 10);
+$cizos_fri = rand(7, 20);
+$cizos_sat_sun = rand(4, 10);
+$pakelio_kaina = 3.30;
+$viso_vnt = 0;
 
-for ($x = 1; $x <= $months; $x++) {
-    $kisene += $alga;
-    $islaidos = rand(500, 2000);
-    $kisene -= $islaidos;
-    print $x . ' menesio ' . ' islaidos ' . $islaidos . 'likutis ' . $kisene . '<br>';
-    if ($kisene <= 0) {
-        print $x . ' menesi baigsis pinigai';
-        break;
-    }
+for ($x = 1; $x <= $days; $x++) {
+    $cizos_mon_thu = rand(7, 10);
+    $date = date('N', strtotime("+$x day"));
+    $viso_vnt += $cizos_mon_thu;
+    print $date . ' dieni ' . $cizos_mon_thu . ' cizu reiskia ' . $viso_vnt . ' is viso <br>';
 }
 ?>
 <html>
