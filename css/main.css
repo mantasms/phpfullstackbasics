@@ -1,16 +1,9 @@
 div {
-    background-position: center;
     background-repeat: no-repeat;
-    background-size: auto;
-    height: 600px;
-    width: 600px;
-    
-}
-.sauleta1 {
-    background-image: url("../images/sunny.jpg");
-    
-}
-.sauleta0 {
-    background-image: url("../images/cloudy.jpg");
+    background-size: contain;
+    background-image: url("../images/ciza.jpg");
+    height: 60px;
+    width: 60px;
+    display: inline-block;
     
 }
