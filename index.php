@@ -1,6 +1,6 @@
 <?php
 
-$zjbs_masyvas = [
+$zmones = [
         'Petras Pizdzius' => [
             'daiktai' => [
                 'telefonas' => [
@@ -24,5 +24,5 @@ $zjbs_masyvas = [
             ]
         ];
 
-var_dump($zjbs_masyvas);
+var_dump($zmones);
 ?>
