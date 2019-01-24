@@ -4,9 +4,14 @@
     background-image: url("../images/ciza.jpg");
     height: 30px;
     width: 30px;
-    display: inline-block; 
+    display: inline-block;
+    margin: 2px 2px 0 2px;
+    border: 1px solid black;
 }
 .pakelis {
     display: inline-block;
-    border: solid;
+    padding: 2px;
+    margin: 5px;
+    border: 1px solid black;
+    background-color: grey;
 }
