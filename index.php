@@ -22,6 +22,8 @@ for ($x = 1; $x <= $days; $x++) {
 }
 $viso_vnt = $viso_vnt_mon_thu + $viso_vnt_fri + $viso_vnt_sat_sun;
 $viso_hours = $viso_vnt * $rukymo_laikas / 60;
+$viso_pakeliu = $viso_vnt / 20;
+$likutis = $viso_vnt % 20;
 ?>
 <html>
     <head>
@@ -30,9 +32,17 @@ $viso_hours = $viso_vnt * $rukymo_laikas / 60;
     </head>
     <body>
         <h1><?php print $viso_vnt . ' rukymo laikas ' . $viso_hours; ?></h1>
-
-        <?php for ($i = 1; $i <= $viso_vnt; $i++): ?>
-            <div></div>
+        <?php for ($j = 1; $j <= $viso_pakeliu; $j++): ?>
+            <div class="pakelis">
+                <?php for ($i = 1; $i <= 20; $i++): ?>
+                    <div class="ciza"></div>
+                <?php endfor; ?>
+            </div>
         <?php endfor; ?>
+        <div class="pakelis">
+            <?php for ($i = 1; $i <= $likutis; $i++): ?>
+                <div class="ciza"></div>
+            <?php endfor; ?>
+        </div>
     </body>
 </html>

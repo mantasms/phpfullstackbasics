@@ -1,9 +1,12 @@
-div {
+.ciza {
     background-repeat: no-repeat;
     background-size: contain;
     background-image: url("../images/ciza.jpg");
-    height: 60px;
-    width: 60px;
+    height: 30px;
+    width: 30px;
+    display: inline-block; 
+}
+.pakelis {
     display: inline-block;
-    
+    border: solid;
 }
