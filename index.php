@@ -2,7 +2,7 @@
 $mano_atmintis = ['Penktadienis', 'Paskaitos', 'Zmona', 'Parduotuve', 'Mokykla', 'Namai', 'Sriuba', 'Alus', 'Pica', 'Alus', 'Vynas', 'Kosmosas'];
 $count = count($mano_atmintis);
 $rand = rand(1, $count);
-
+$flashback = $rand - 1;
 ?>
 
 <html>
@@ -12,7 +12,7 @@ $rand = rand(1, $count);
     <body>
         <h1>WTF?</h1>
         <h2>mano atmintis</h2>
-        <h3>Flashback <?php print $rand . ': ' . $mano_atmintis[$rand - 1]; ?> </h3>
+        <h3>Flashback <?php print $rand . ': ' . $mano_atmintis[$flashback]; ?> </h3>
         <ul><?php foreach ($mano_atmintis as $value): ?>
                 <li>
                     <?php print $value; ?>
