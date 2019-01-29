@@ -1,78 +1,45 @@
 <?php
-$mano_atmintis = [
-    'Penktadienis',
-    'Paskaitos',
-    'Zmona',
-    'Parduotuve',
-    'Mokykla',
-    'Namai',
-    'Sriuba',
-    'Alus',
-    'Pica',
-    'Alus',
-    'Vynas',
-    'Kosmosas'
+
+$dishes = [
+    [
+        "name" => "Nut Salad",
+        "price" => 3.44,
+        "ingredients" => [
+            "Nuts",
+            "Jogurt"
+        ]
+    ],
+    [
+        "name" => "Bulldish",
+        "price" => 4.77,
+        "ingredients" => [
+            "Rice",
+            "Soya sauce"
+        ]
+    ],
 ];
-
-$draugo_atmintis = [
-    'Penktadienis',
-    'Paskaitos',
-    'Alus',
-    'Alus',
-    'Degtine',
-    'Namai',
-    'Bliudas'
-];
-
-$count = count($mano_atmintis);
-$rand = rand(1, $count);
-$flashback_key = $rand - 1;
-$bendra_atmintis = [];
-//$count_draugo = 0;
-
-foreach ($draugo_atmintis as $value) {
-    if (!in_array($value, $bendra_atmintis)) {
-        if (in_array($value, $mano_atmintis)) {
-            array_push($bendra_atmintis, $value);
-        }
-    }
-}
-if (!in_array($mano_atmintis[$flashback_key], $bendra_atmintis)) {
-        array_push($bendra_atmintis, $mano_atmintis[$flashback_key]);
-}
 
 ?>
-
 <html>
     <head>
-        <title>Atmintis</title>
+        <title>#5 Uzduotis - Patiekalai</title>
     </head>
     <body>
-        <h1>WTF?</h1>
-        <h2>Mano atmintis</h2>
-        <h3>Flashback <?php print $rand . ': ' . $mano_atmintis[$flashback_key]; ?> </h3>
-        <ul>
-            <?php foreach ($mano_atmintis as $value): ?>
-                <li>
-                    <?php print $value; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <h2>Draugo atmintis</h2>
-        <ul>
-            <?php foreach ($draugo_atmintis as $value): ?>
-                <li>
-                    <?php print $value; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-        <h2>Bendra atmintis 100%</h2>
-        <ul>
-            <?php foreach ($bendra_atmintis as $value): ?>
-                <li>
-                    <?php print $value; ?>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <h1>Dishes:</h1>
+        <?php foreach ($dishes as $dish): ?>
+        
+            <!-- H2 tikrai puikiai tinka patiekalo pavadinimui !-->        
+            <h2><?php print $dish['name']; ?></h2>
+            
+            <!-- Ingredientų list'as !-->                 
+            <ol class="ingredients">
+                <?php foreach ($dish['ingredients'] as $ingredient): ?>
+                    <li><?php print $ingredient; ?></li>
+                <?php endforeach; ?>
+            </ol>
+            
+            <!-- Nededu kainos į h2, nes tai nėra antraštės dalis, o papildoma info !-->
+            <p class="dish-info">Kaina: <?php print $dish['price']; ?> Eur</p>
+        <?php endforeach; ?>
     </body>
 </html>
