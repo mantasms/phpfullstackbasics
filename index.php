@@ -1,45 +1,49 @@
 <?php
 
-$dishes = [
-    [
-        "name" => "Nut Salad",
-        "price" => 3.44,
-        "ingredients" => [
-            "Nuts",
-            "Jogurt"
-        ]
-    ],
-    [
-        "name" => "Bulldish",
-        "price" => 4.77,
-        "ingredients" => [
-            "Rice",
-            "Soya sauce"
-        ]
-    ],
+$name = [
+    'Tapkes',
+    'Morka',
+    'Kopustas',
+    'Kefyras',
+    'Bonka',
+    'Atsuktuvas'
 ];
+
+$count = count($name);
+$rankinuko_size = rand(1, 10);
+print $rankinuko_size;
+
+for ($i = 1; $i <= $rankinuko_size; $i++) {
+    $random_daiktas = rand(0, $count - 1);
+    $daikto_name = $name[$random_daiktas];
+    $size = rand(10, 100);
+    $is_dark = rand(0, 1);
+    
+    if ($is_dark){
+        $spalva = 'sviesus';
+    } else {
+        $spalva = 'tamsus';
+    }
+    $daiktas = [
+        'name' => $daikto_name,
+        'size' => $size,
+        'spalva' => $spalva,
+        'info' => "$daikto_name uzima $size cm3 ir jo spalva $spalva"
+    ];
+    $rankinukas[] = $daiktas;
+};
+
+//var_dump($daiktas);
+//var_dump($rankinukas);
 
 ?>
 <html>
     <head>
-        <title>#5 Uzduotis - Patiekalai</title>
+        <title>Random Rankinukas</title>
     </head>
     <body>
-        <h1>Dishes:</h1>
-        <?php foreach ($dishes as $dish): ?>
-        
-            <!-- H2 tikrai puikiai tinka patiekalo pavadinimui !-->        
-            <h2><?php print $dish['name']; ?></h2>
-            
-            <!-- Ingredientų list'as !-->                 
-            <ol class="ingredients">
-                <?php foreach ($dish['ingredients'] as $ingredient): ?>
-                    <li><?php print $ingredient; ?></li>
-                <?php endforeach; ?>
-            </ol>
-            
-            <!-- Nededu kainos į h2, nes tai nėra antraštės dalis, o papildoma info !-->
-            <p class="dish-info">Kaina: <?php print $dish['price']; ?> Eur</p>
+        <?php foreach ($rankinukas as $daiktas): ?>
+            <p><?php print $daiktas['info']; ?></p>
         <?php endforeach; ?>
     </body>
 </html>
