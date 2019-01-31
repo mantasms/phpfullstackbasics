@@ -1,12 +1,19 @@
-.flex {
-    display: flex;
+.tevas {
+    display: inline-block;
+    
+}
+
+.flex-1 {
+    border: solid;
+
 }
 .class-1, .class-0 {
-    
+
     width: 100px;
     height: 100px;
     background-size: contain;
     background-repeat: no-repeat;
+    display: inline-block;
     
 }
 .class-1 {
@@ -15,5 +22,5 @@
 }
 .class-0 {
     background-image: url("../images/cloudy.jpg");
-    
+
 }

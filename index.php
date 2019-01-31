@@ -37,12 +37,14 @@ var_dump(slot_check($slot));
     </head>
     <body>
         <h1>Rubikas kubikas</h1>
-        <?php foreach ($slot as $value): ?>
-            <div class="flex">
-                <?php foreach ($value as $skaicius): ?> 
-                    <div class="class-<?php print $skaicius ?>"></div>                  
-                <?php endforeach; ?>
-            </div>
-        <?php endforeach; ?>
+        <div class="tevas">
+            <?php foreach ($slot as $key => $value): ?>
+                <div class="flex-<?php print (in_array($key, $atsakymas)); ?> ">
+                    <?php foreach ($value as $skaicius): ?> 
+                        <div class="class-<?php print $skaicius ?>"></div>                  
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+        </div>
     </body>
 </html>
