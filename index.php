@@ -1,18 +1,19 @@
 <?php
 
-function slot_run() {
+function slot_run($rows, $cols) {
     $array = [];
-    for ($x = 1; $x <= 3; $x++) {
-        for ($y = 1; $y <= 3; $y++) {
+    for ($x = 1; $x <= $rows; $x++) {
+        for ($y = 1; $y <= $cols; $y++) {
 
             $random_slot = rand(0, 1);
             $array[$x][$y] = $random_slot;
-        };
-    };
+        }
+    }
     return $array;
-};
-$casino = slot_run();
-var_dump($casino);
+}
+
+$slot = slot_run(3, 3);
+var_dump($slot);
 ?>
 
 <html>
@@ -21,9 +22,13 @@ var_dump($casino);
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <h1></h1>
-        <p>
-
-        </p>
+        <h1>Rubikas kubikas</h1>
+            <?php foreach ($slot as $value): ?>
+                <div class="flex">
+                    <?php foreach ($value as $skaicius): ?> 
+                        <div class="class-<?php print $skaicius ?>"></div>                  
+                    <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
     </body>
 </html>
