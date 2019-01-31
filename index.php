@@ -1,55 +1,29 @@
 <?php
-$auto = [
-    [
-        'gamintojas' => 'Fiat',
-        'modelis' => '126p',
-        'metai' => [
-            'from' => 1972,
-            'to' => 2000
-        ],
-        'gamyklos' =>
-        [
-            'Kasinas',
-            'Termini Imereze',
-            'Kragujevacas',
-            'Belsko-Biala',
-            'Tychos'
-        ],
-        'klase' => 'miesto automobilis',
-        'kebulo tipas' =>
-        [
-            '2 duru sedanas',
-            '2 duru hecbekas'
-        ],
-        'variklis' =>
-        [
-            'cilindrai' => 2,
-            'turis' =>
-            [
-                594,
-                652,
-                704
-            ]
-        ],
-        [
-            'dizaineris' => 'Sergio Sartorelli'
-        ]
-    ]
-];
-var_dump($auto);
+
+function slot_run() {
+    $array = [];
+    for ($x = 1; $x <= 3; $x++) {
+        for ($y = 1; $y <= 3; $y++) {
+
+            $random_slot = rand(0, 1);
+            $array[$x][$y] = $random_slot;
+        };
+    };
+    return $array;
+};
+$casino = slot_run();
+var_dump($casino);
 ?>
 
 <html>
     <head>
-        <title>AUTO</title>
+        <title>Functions</title>
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <h1>Balius</h1>
-        <?php foreach ($balius as $dish): ?>
-            <p><?php print $dish['kiekis']; ?>
-                <span class="<?php print $dish['matas']; ?>"></span>
-            </p>
-        <?php endforeach; ?>
+        <h1></h1>
+        <p>
+
+        </p>
     </body>
 </html>
