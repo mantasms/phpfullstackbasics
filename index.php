@@ -14,6 +14,20 @@ function slot_run($rows, $cols) {
 
 $slot = slot_run(3, 3);
 var_dump($slot);
+
+function slot_check($slot) {
+    $output = [];
+    foreach ($slot as $key => $value) {
+
+        if (array_sum($value) == count($value)) {
+            $output[] = $key;
+        }
+    }
+    return $output;
+}
+
+$atsakymas = slot_check($slot);
+var_dump(slot_check($slot));
 ?>
 
 <html>
@@ -23,12 +37,12 @@ var_dump($slot);
     </head>
     <body>
         <h1>Rubikas kubikas</h1>
-            <?php foreach ($slot as $value): ?>
-                <div class="flex">
-                    <?php foreach ($value as $skaicius): ?> 
-                        <div class="class-<?php print $skaicius ?>"></div>                  
-                    <?php endforeach; ?>
-                </div>
-            <?php endforeach; ?>
+        <?php foreach ($slot as $value): ?>
+            <div class="flex">
+                <?php foreach ($value as $skaicius): ?> 
+                    <div class="class-<?php print $skaicius ?>"></div>                  
+                <?php endforeach; ?>
+            </div>
+        <?php endforeach; ?>
     </body>
 </html>
