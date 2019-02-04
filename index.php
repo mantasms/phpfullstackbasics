@@ -22,6 +22,13 @@ $bbd = [
     ]
 ];
 
+$istorijos = [
+    'dienos pradzia',
+    'pirms leveel lorem ipsum blablabla',
+    'antras level pajabat',
+    'trecias level kurwa nx istorija',
+];
+
 function pzdamat($bbd, $level) {
     foreach ($bbd as $key => &$stulpelis) {
         $stulpelis['show_text'] = false;
@@ -37,6 +44,19 @@ $level = rand(0, count($bbd) - 1);
 print $level;
 $bbd = pzdamat($bbd, $level);
 var_dump($bbd);
+
+function istorijos($istorijos, $level) {
+    
+    foreach ($istorijos as $key => &$istorija) {
+        if ($key > $level) {
+            unset($istorijos[$key]);
+        }
+    }
+    return $istorijos;
+}
+
+$istorijos = istorijos($istorijos, $level);
+var_dump($istorijos);
 ?>
 <html>
     <head>
