@@ -47,7 +47,9 @@ var_dump($bbd);
         <div class="flex-container">
             <?php foreach ($bbd as $stulpelis): ?>
                 <div class='block <?php print $stulpelis['spalva'] . ' ' . $stulpelis['forma']; ?>'>
-                    <span><?php print $stulpelis['textas']; ?></span>
+                    <?php if ($stulpelis['show_text']): ?>
+                        <span><?php print $stulpelis['show_text']; ?></span>
+                    <?php endif; ?>
                 </div>
             <?php endforeach; ?>
         </div>
