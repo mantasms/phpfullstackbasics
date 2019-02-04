@@ -22,18 +22,18 @@ $bbd = [
     ]
 ];
 
-function pzdamat($bbd, $level) {
-    foreach ($bbd as $key => &$stulpelis) {
-        if ($key > $level) {
-            $stulpelis['spalva'] = 'pilka';
-        }
+function pzdamat($bbd) {
+    foreach ($bbd as &$stulpelis) {
+        
+            $stulpelis['show_text'] = true;
+        
     }
     return $bbd;
 }
 
-$level = rand(0, count($bbd)-1);
-print $level;
-$bbd = pzdamat($bbd, $level);
+
+$bbd = pzdamat($bbd);
+var_dump($bbd);
 ?>
 <html>
     <head>
