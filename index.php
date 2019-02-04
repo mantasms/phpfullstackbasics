@@ -1,50 +1,49 @@
 <?php
+$bbd = [
+    [
+        'forma' => 'apvali',
+        'spalva' => 'zalia',
+        'textas' => 'AS'
+    ],
+    [
+        'forma' => 'kvadratas',
+        'spalva' => 'zalia',
+        'textas' => 'B'
+    ],
+    [
+        'forma' => 'kvadratas',
+        'spalva' => 'orange',
+        'textas' => 'B'
+    ],
+    [
+        'forma' => 'kvadratas',
+        'spalva' => 'raudona',
+        'textas' => 'D'
+    ]
+];
 
-function slot_run($rows, $cols) {
-    $array = [];
-    for ($x = 1; $x <= $rows; $x++) {
-        for ($y = 1; $y <= $cols; $y++) {
-
-            $random_slot = rand(0, 1);
-            $array[$x][$y] = $random_slot;
-        }
+function pzdamat($bbd) {
+    foreach ($bbd as &$stulpelis) {
+        $stulpelis['spalva'] = 'raudona';
     }
-    return $array;
+    return $bbd;
 }
 
-$slot = slot_run(3, 3);
-var_dump($slot);
-
-function slot_check($slot) {
-    $output = [];
-    foreach ($slot as $key => $value) {
-
-        if (array_sum($value) == count($value)) {
-            $output[] = $key;
-        }
-    }
-    return $output;
-}
-
-$atsakymas = slot_check($slot);
-var_dump(slot_check($slot));
+$bbd = pzdamat($bbd);
 ?>
-
 <html>
     <head>
-        <title>Functions</title>
+        <title>BBD MAT</title>
         <link rel="stylesheet" type="text/css" href="/css/main.css">
     </head>
     <body>
-        <h1>Rubikas kubikas</h1>
-        <div class="tevas">
-            <?php foreach ($slot as $key => $value): ?>
-                <div class="flex-<?php print (in_array($key, $atsakymas)); ?> ">
-                    <?php foreach ($value as $skaicius): ?> 
-                        <div class="class-<?php print $skaicius ?>"></div>                  
-                    <?php endforeach; ?>
+        <h1>BBD</h1>
+        <div class="flex-container">
+<?php foreach ($bbd as $stulpelis): ?>
+                <div class='block <?php print $stulpelis['spalva'] . ' ' . $stulpelis['forma']; ?>'>
+                    <span><?php print $stulpelis['textas']; ?></span>
                 </div>
-            <?php endforeach; ?>
+<?php endforeach; ?>
         </div>
     </body>
 </html>
