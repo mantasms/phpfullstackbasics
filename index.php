@@ -47,7 +47,7 @@ var_dump($bbd);
 
 function istorijos($istorijos, $level) {
     
-    foreach ($istorijos as $key => &$istorija) {
+    foreach ($istorijos as $key => $istorija) {
         if ($key > $level) {
             unset($istorijos[$key]);
         }
