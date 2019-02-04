@@ -22,14 +22,18 @@ $bbd = [
     ]
 ];
 
-function pzdamat($bbd) {
-    foreach ($bbd as &$stulpelis) {
-        $stulpelis['spalva'] = 'raudona';
+function pzdamat($bbd, $level) {
+    foreach ($bbd as $key => &$stulpelis) {
+        if ($key > $level) {
+            $stulpelis['spalva'] = 'pilka';
+        }
     }
     return $bbd;
 }
 
-$bbd = pzdamat($bbd);
+$level = rand(0, count($bbd)-1);
+print $level;
+$bbd = pzdamat($bbd, $level);
 ?>
 <html>
     <head>
@@ -39,11 +43,11 @@ $bbd = pzdamat($bbd);
     <body>
         <h1>BBD</h1>
         <div class="flex-container">
-<?php foreach ($bbd as $stulpelis): ?>
+            <?php foreach ($bbd as $stulpelis): ?>
                 <div class='block <?php print $stulpelis['spalva'] . ' ' . $stulpelis['forma']; ?>'>
                     <span><?php print $stulpelis['textas']; ?></span>
                 </div>
-<?php endforeach; ?>
+            <?php endforeach; ?>
         </div>
     </body>
 </html>

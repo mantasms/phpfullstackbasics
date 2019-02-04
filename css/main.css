@@ -18,6 +18,10 @@
 .raudona {
     background-color: red;
 }
+.pilka {
+   background-color: grey; 
+}
+
 .apvali {
     border-radius: 50%;
 }
