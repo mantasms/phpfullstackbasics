@@ -24,11 +24,12 @@ $bbd = [
 
 function pzdamat($bbd, $level) {
     foreach ($bbd as $key => &$stulpelis) {
-        $stulpelis['show_text'] = true;
+        $stulpelis['show_text'] = false;
         if ($key > $level) {
             $stulpelis['spalva'] = 'pilka';
         }
     }
+    $bbd[$level]['show_text'] = true;
     return $bbd;
 }
 
@@ -48,7 +49,7 @@ var_dump($bbd);
             <?php foreach ($bbd as $stulpelis): ?>
                 <div class='block <?php print $stulpelis['spalva'] . ' ' . $stulpelis['forma']; ?>'>
                     <?php if ($stulpelis['show_text']): ?>
-                        <span><?php print $stulpelis['show_text']; ?></span>
+                        <span><?php print $stulpelis['textas']; ?></span>
                     <?php endif; ?>
                 </div>
             <?php endforeach; ?>
