@@ -1,11 +1,11 @@
 <?php
 
-$roll_joints = true;
-$joint1 = &$roll_joints;
-$joint2 = &$joint1;
-$joint3 = &$joint2;
+$sheep = ['bliea'];
 
-print $joint1;
-print $joint2;
-print $joint3;
+for ($i = 1; $i <= 4; $i++) {
+    $sheep[] = &$sheep[$i - 1];
+}
+
+$sheep[0] = 'kikiolki maklioski';
+var_dump($sheep)
 ?>
