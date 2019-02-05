@@ -37,6 +37,7 @@ function pzdamat($bbd, $level) {
         }
     }
     $bbd[$level]['show_text'] = true;
+
     return $bbd;
 }
 
@@ -46,17 +47,18 @@ $bbd = pzdamat($bbd, $level);
 var_dump($bbd);
 
 function istorijos($istorijos, $level) {
-    
     foreach ($istorijos as $key => $istorija) {
         if ($key > $level) {
             unset($istorijos[$key]);
         }
     }
+
     return $istorijos;
 }
 
 $istorijos = istorijos($istorijos, $level);
 var_dump($istorijos);
+
 ?>
 <html>
     <head>
