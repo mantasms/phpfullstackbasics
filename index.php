@@ -1,5 +1,5 @@
 <?php
-$atsakymas = 0;
+$atsakymas = null;
 
 if (isset($_POST['skaicius'])) {
     $skaicius = $_POST['skaicius'];
@@ -14,6 +14,20 @@ if (isset($_POST['skaicius'])) {
 function square($skaicius) {
     return $skaicius ** 2;
 }
+
+// Dainiaus optimalus uzduoties kodas:
+// 
+//function square($x) {
+//    return $x ** 2;
+//}
+//
+//$atsakymas = 'Ivesk duomenis';
+//		
+//$skaicius = $_POST['skaicius'] ?? false;
+//
+//if (!empty($skaicius)) {
+//    $atsakymas = square($skaicius);
+//}
 
 ?>
 <html>
