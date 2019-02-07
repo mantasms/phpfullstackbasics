@@ -1,5 +1,5 @@
 <?php
-$file = $_FILES['photo'] ?? false;
+$file = $_FILES['file'] ?? false;
 var_dump($_FILES);
 if (!empty($_FILES)) {
     var_dump($_FILES);
@@ -33,7 +33,7 @@ save_file($file);
     </head>
     <body>
         <form enctype="multipart/form-data" method="POST">
-            Tavo foto: <input name="photo" type="file">
+            Tavo foto: <input name="file" type="file">
             <input type="submit" value="Uload!">
         </form>
     </body>
