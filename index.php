@@ -1,53 +1,64 @@
 <?php
-$input = filter_input_array(INPUT_POST, [
-    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
-        ]);
-
 $array = [
     'input' => [
         'name' => [
-            'label' => 'Mano vardas',
+            'text' => 'Mano vardas',
             'type' => 'text',
-            'placeholder' => 'Vardas'
+            'placeholder' => 'Vardas',
         ],
         'zirniai' => [
-            'label' => 'Kiek turiu žirnių',
+            'text' => 'Kiek turiu zirniu ?',
             'type' => 'text',
             'placeholder' => '1-100',
         ],
         'reason' => [
-            'label' => 'Paslaptis, kodėl turiu žirnių',
+            'text' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
         ]
     ],
     'button' => [
-        'name' => 'action',
-        'label' => 'Paberti...',
-        'type' => 'button',
-        'value' => 'do_zirniai',
-    ]
+        'do_zirniai' => [
+            'text' => 'Paberti...',
         ]
+    ]
+];
+
+function get_safe_input($form) {
+    $filter_param = [];
+    foreach ($form['input'] as $key => $value) {
+        $filter_param[$key] = FILTER_SANITIZE_SPECIAL_CHARS;
+    }
+    $filter_param['action'] = FILTER_SANITIZE_SPECIAL_CHARS;
+    return filter_input_array(INPUT_POST, $filter_param);
+}
+
+var_dump(get_safe_input($array));
+
+//$input = function get_safe_input($form);
+
+//function validate_not_empty($input, &$form) {
+//    
+//}
 ?>
 <html>
     <head>
-        <title>HACK me</title>
-        <link rel="stylesheet" href="css/main.css">
+        <title>Hack Me</title>
+        <link rel="stylesheet" href="css/style.css"/>
     </head>
     <body>
+        <h1></h1>
+        <h2>Hack this page</h2>
         <form method="POST">
-            <?php foreach ($array['input'] as $key => $value): ?>
+<?php foreach ($array['input'] as $input_key => $input): ?>
                 <label>
-                    <span><?php print $value['label']; ?></span>
-                    <input type="<?php print $value['type']; ?>" 
-                           name="<?php print $value['label']; ?>" 
-                           placeholder="<?php print $value['placeholder']; ?>">
+                    <span><?php print $input['text']; ?></span>
+                    <input type="<?php print $input['type']; ?>" name="<?php print $input_key; ?>" placeholder="<?php print $input['placeholder']; ?>">
                 </label>
             <?php endforeach; ?>
-            <?php foreach ($array['button'] as $key => $button_value): ?>
-            <button name="<?php print $button_value['name']; ?>" 
-                   value="<?php print $button_value['value']; ?>"
-            <?php endforeach; ?>
+            <?php foreach ($array['button'] as $button_key => $button): ?>
+                <button name="action" value="<?php print $button_key; ?>"><?php print $button['text']; ?></button>
+<?php endforeach; ?>
         </form>
     </body>
 </html>
