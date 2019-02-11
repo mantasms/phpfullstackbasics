@@ -1,5 +1,5 @@
 <?php
-$array = [
+$form = [
     'input' => [
         'name' => [
             'text' => 'Mano vardas',
@@ -33,12 +33,14 @@ function get_safe_input($form) {
     return filter_input_array(INPUT_POST, $filter_param);
 }
 
-var_dump(get_safe_input($array));
+var_dump(get_safe_input($form));
 
-//$input = function get_safe_input($form);
-
-//function validate_not_empty($input, &$form) {
-//    
+// kodas paimtas is Donatas Jurkus repositorium
+// 
+//$input = function get_safe_input($forma);
+//
+//function validate_not_empty($input, &$forma) {
+//    foreach ($form ['input'] as $fields)
 //}
 ?>
 <html>
@@ -50,13 +52,13 @@ var_dump(get_safe_input($array));
         <h1></h1>
         <h2>Hack this page</h2>
         <form method="POST">
-<?php foreach ($array['input'] as $input_key => $input): ?>
+<?php foreach ($form['input'] as $input_key => $input): ?>
                 <label>
                     <span><?php print $input['text']; ?></span>
                     <input type="<?php print $input['type']; ?>" name="<?php print $input_key; ?>" placeholder="<?php print $input['placeholder']; ?>">
                 </label>
             <?php endforeach; ?>
-            <?php foreach ($array['button'] as $button_key => $button): ?>
+            <?php foreach ($form['button'] as $button_key => $button): ?>
                 <button name="action" value="<?php print $button_key; ?>"><?php print $button['text']; ?></button>
 <?php endforeach; ?>
         </form>
