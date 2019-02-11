@@ -1,40 +1,53 @@
 <?php
-$file = $_FILES['file'] ?? false;
-var_dump($_FILES);
-if (!empty($_FILES)) {
-    var_dump($_FILES);
-}
-/**
- * Saves file from a superglobal $_FILES
- * 
- * @param array $file $_FILES['file_index']
- * @param string $dir
- * @param array $allowed_types Allowed file mime types. Ex.: 'image/jpeg'
- * @return boolean false if error
- */
-function save_file($file, $dir = 'uploads', $allowed_types = ['image/jpeg', 'image/png']) {
-    if ($file['error'] == 0 && in_array($file['type'], $allowed_types)) {
-        $target_file_name = microtime() . '-' . strtolower($file['name']);
-        $target_path = $dir . '/' . $target_file_name;
+$input = filter_input_array(INPUT_POST, [
+    'vardas' => FILTER_SANITIZE_SPECIAL_CHARS,
+        ]);
 
-        if (move_uploaded_file($file['tmp_name'], $target_path)) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-save_file($file);
+$array = [
+    'input' => [
+        'name' => [
+            'label' => 'Mano vardas',
+            'type' => 'text',
+            'placeholder' => 'Vardas'
+        ],
+        'zirniai' => [
+            'label' => 'Kiek turiu žirnių',
+            'type' => 'text',
+            'placeholder' => '1-100',
+        ],
+        'reason' => [
+            'label' => 'Paslaptis, kodėl turiu žirnių',
+            'type' => 'password',
+            'placeholder' => 'Issipasakok',
+        ]
+    ],
+    'button' => [
+        'name' => 'action',
+        'label' => 'Paberti...',
+        'type' => 'button',
+        'value' => 'do_zirniai',
+    ]
+        ]
 ?>
 <html>
     <head>
-        <title>formos</title>
+        <title>HACK me</title>
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
-        <form enctype="multipart/form-data" method="POST">
-            Tavo foto: <input name="file" type="file">
-            <input type="submit" value="Uload!">
+        <form method="POST">
+            <?php foreach ($array['input'] as $key => $value): ?>
+                <label>
+                    <span><?php print $value['label']; ?></span>
+                    <input type="<?php print $value['type']; ?>" 
+                           name="<?php print $value['label']; ?>" 
+                           placeholder="<?php print $value['placeholder']; ?>">
+                </label>
+            <?php endforeach; ?>
+            <?php foreach ($array['button'] as $key => $button_value): ?>
+            <button name="<?php print $button_value['name']; ?>" 
+                   value="<?php print $button_value['value']; ?>"
+            <?php endforeach; ?>
         </form>
     </body>
 </html>
