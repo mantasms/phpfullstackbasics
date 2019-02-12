@@ -36,7 +36,7 @@ function validate_not_empty($safe_input, &$form) {
     }
 }
 
-function validate_form($input, $$form) {
+function validate_form($input, &$form) {
     if (is_callable($validate_form)) {
         $validate_form();
     } else {
