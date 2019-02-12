@@ -42,19 +42,25 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'required' => ['validate_not_empty']
+            'validators' => [
+                'validate_not_empty'
+            ]
         ],
         'zirniu_kiekis' => [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'required' => ['validate_not_empty']
+            'validators' => [
+                'validate_not_empty'
+            ]
         ],
         'paslaptis' => [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'required' => ['validate_not_empty']
+            'validators' => [
+                'validate_not_empty'
+            ]
         ]
     ],
     'buttons' => [
