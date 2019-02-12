@@ -28,7 +28,7 @@ function get_safe_input($form) {
  */
 function validate_not_empty($safe_input, &$form) {
     foreach ($form['fields'] as $field_id => &$field) {
-        if ($field['to_validate'] && $safe_input[$field_id] == '') {
+        if ($field['required'] && $safe_input[$field_id] == '') {
             $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
                     . 'kad palikai @field tuscia!', ['@field' => $field['label']
             ]);
@@ -42,19 +42,19 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'to_validate' => false
+            'required' => ['validate_not_empty']
         ],
         'zirniu_kiekis' => [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'to_validate' => true
+            'required' => ['validate_not_empty']
         ],
         'paslaptis' => [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'to_validate' => false
+            'required' => ['validate_not_empty']
         ]
     ],
     'buttons' => [
