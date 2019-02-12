@@ -49,13 +49,16 @@ function validate_is_number($field_input, &$field) {
 }
 
 function validate_form($input, &$form) {
-    foreach ($form['fields'] as $field_id => $field) {
+    foreach ($form['fields'] as $field_id => &$field) {
         foreach ($field['validators'] as $validator) {
             if (is_callable($validator)) {
-                validate_not_empty($field_input, &$field);
-                validate_is_number($field_input, &$field);
+                if (!$validator($input[$field_id], $field)) {
+                    break;
+                }
             } else {
-                throw new Exception("It's not callable bro");
+                throw new Exception(strtr("@validator function not found!", [
+                    '@validator' => $validator
+                ]));
             }
         }
     }
@@ -68,7 +71,8 @@ $form = [
             'type' => 'text',
             'placeholder' => 'Vardas',
             'validators' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_is_number'
             ]
         ],
         'zirniu_kiekis' => [
@@ -76,7 +80,8 @@ $form = [
             'type' => 'text',
             'placeholder' => '1-100',
             'validators' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_is_number'
             ]
         ],
         'paslaptis' => [
@@ -84,7 +89,8 @@ $form = [
             'type' => 'password',
             'placeholder' => 'Issipasakok',
             'validators' => [
-                'validate_not_empty'
+                'validate_not_empty',
+                'validate_is_number'
             ]
         ]
     ],
