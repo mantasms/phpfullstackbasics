@@ -19,7 +19,7 @@ function get_safe_input($form) {
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
-if ($field['check']) {
+if ($field['to_validate']) {
 
     /**
      * Check all form fields if they are not empty
@@ -45,19 +45,19 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'check' => false
+            'to_validate' => false
         ],
         'zirniu_kiekis' => [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'check' => true
+            'to_validate' => true
         ],
         'paslaptis' => [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'check' => false
+            'to_validate' => false
         ]
     ],
     'buttons' => [
