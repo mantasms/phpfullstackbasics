@@ -26,21 +26,26 @@ function get_safe_input($form) {
  * @param array $form
  * @return type
  */
-function validate_not_empty($safe_input, &$form) {
-    foreach ($form['fields'] as $field_id => &$field) {
-        if ($safe_input[$field_id] == '') {
-            $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                    . 'kad palikai @field tuscia!', ['@field' => $field['label']
-            ]);
-        }
+function validate_not_empty($safe_input, &$field) {
+    if ($safe_input == '') {
+        $field['erros_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'kad palikai @field tuscia!', [
+            '@field' => $field['label']
+        ]);
+    } else {
+        return true;
     }
 }
 
 function validate_form($input, &$form) {
-    if (is_callable($validate_form)) {
-        $validate_form();
-    } else {
-        throw new Exception("It's not callable bro");
+    foreach ($form['fields'] as $field_id => $field) {
+        foreach ($field['validators'] as $validator) {
+            if (is_callable($validator)) {
+                var_dump('is callable');
+            } else {
+                throw new Exception("It's not callable bro");
+            }
+        }
     }
 }
 
