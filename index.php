@@ -103,7 +103,7 @@ $form = [
 
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
-    validate_not_empty($safe_input, $form);
+    validate_form($safe_input, $form);
 }
 ?>
 
