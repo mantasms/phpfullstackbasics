@@ -19,26 +19,23 @@ function get_safe_input($form) {
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
-if ($field['to_validate']) {
-
-    /**
-     * Check all form fields if they are not empty
-     * & adds error messages if so
-     * @param array $safe_input
-     * @param array $form
-     * @return type
-     */
-    function validate_not_empty($safe_input, &$form) {
-        foreach ($form['fields'] as $field_id => &$field) {
-            if ($safe_input[$field_id] == '') {
-                $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                        . 'kad palikai @field tuscia!', ['@field' => $field['label']
-                ]);
-            }
+/**
+ * Check all form fields if they are not empty
+ * & adds error messages if so
+ * @param array $safe_input
+ * @param array $form
+ * @return type
+ */
+function validate_not_empty($safe_input, &$form) {
+    foreach ($form['fields'] as $field_id => &$field) {
+        if ($field['to_validate'] && $safe_input[$field_id] == '') {
+            $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                    . 'kad palikai @field tuscia!', ['@field' => $field['label']
+            ]);
         }
     }
-
 }
+
 $form = [
     'fields' => [
         'vardas' => [
@@ -82,22 +79,22 @@ if (!empty($_POST)) {
         <h1>Generuojam forma is array</h1>
         <form method="POST">
             <!-- Input Fields -->
-                <?php foreach ($form['fields'] as $field_id => $field): ?>
+            <?php foreach ($form['fields'] as $field_id => $field): ?>
                 <label>
                     <span><?php print $field['label']; ?></span>
                     <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
-                <?php if (isset($field['error_msg'])): ?>
+                    <?php if (isset($field['error_msg'])): ?>
                         <span class="error"><?php print $field['error_msg']; ?></span>
-    <?php endif; ?>
+                    <?php endif; ?>
                 </label>
             <?php endforeach; ?>
 
             <!-- Buttons -->
             <?php foreach ($form['buttons'] as $button_id => $button): ?>
                 <button name="action" value="<?php print $button_id; ?>">
-    <?php print $button['text']; ?>
+                    <?php print $button['text']; ?>
                 </button>
-<?php endforeach; ?>
+            <?php endforeach; ?>
         </form>
     </body>
 </html>
