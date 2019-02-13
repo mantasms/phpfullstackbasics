@@ -1,84 +1,34 @@
 <?php
+define('STORAGE_FILE', 'files/form_input.txt');
+require_once 'functions/form.php';
 
 /**
- * Filters $_POST
- * to form accordingly
  * 
- * @param array $form
- * @return array safe input
+ * @param type $array
+ * @param type $file
+ * @return type
  */
-function get_safe_input($form) {
-    $filtro_parametrai = [
-        'action' => FILTER_SANITIZE_SPECIAL_CHARS
-    ];
-    
-    foreach ($form['fields'] as $field_id => $value) {
-        $filtro_parametrai[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
-    }
-    
-    return filter_input_array(INPUT_POST, $filtro_parametrai);
+function array_to_file($array, $file) {
+    $stringas = json_encode($array);
+
+    return file_put_contents($file, $stringas);
 }
 
 /**
- * Validates form
  * 
- * @param array $input
- * @param array $form
- * @throws Exception
+ * @param type $input
+ * @return type
  */
-function validate_form($input, &$form) {
-    $success = true;
-    
-    foreach ($form['fields'] as $field_id => &$field) {
-        foreach ($field['validate'] as $validator) {
-            if (is_callable($validator)) {
-                if (!$validator($input[$field_id], $field)) {
-                    $success = false;
-                    break;
-                }
-            } else {
-                throw new Exception(strtr('Not callable @validator function', [
-                    '@validator' => $validator
-                ]));
-            }
-        }
-    }
-    
-    return $success;
+function success($input) {
+    return array_to_file($input, STORAGE_FILE);
 }
 
 /**
- * Checks if field is empty
  * 
- * @param string $field_input
- * @param array $field $form Field
  * @return boolean
  */
-function validate_not_empty($field_input, &$field) {
-    if (strlen($field_input) == 0) {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'kad palikai @field tuscia!', ['@field' => $field['label']
-        ]);
-    } else {
-        return true;
-    }
-}
-
-/**
- * Checks if field is a number
- * 
- * @param string $field_input
- * @param array $field $form Field
- * @return boolean
- */
-function validate_is_number($field_input, &$field) {
-    if (!is_numeric($field_input)) {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'nes @field nera skaicius!', ['@field' => $field['label']
-        ]);
-    } else {
-        return true;
-    }
+function fail() {
+    return false;
 }
 
 $form = [
@@ -88,7 +38,7 @@ $form = [
             'type' => 'text',
             'placeholder' => 'Vardas',
             'validate' =>
-                [
+            [
                 'validate_not_empty'
             ],
         ],
@@ -97,7 +47,7 @@ $form = [
             'type' => 'text',
             'placeholder' => '1-100',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
                 'validate_is_number'
             ],
@@ -107,7 +57,7 @@ $form = [
             'type' => 'password',
             'placeholder' => 'Issipasakok',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
             ],
         ]
@@ -116,8 +66,17 @@ $form = [
         'do_zirniai' => [
             'text' => 'Paberti...'
         ]
+    ],
+    'callbacks' => [
+        'success' => [
+            'success'
+        ],
+        'fail' => [
+            'fail'
+        ]
     ]
 ];
+
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     validate_form($safe_input, $form);
@@ -132,22 +91,22 @@ if (!empty($_POST)) {
         <h1>Generuojam forma is array</h1>
         <form method="POST">
             <!-- Input Fields -->
-            <?php foreach ($form['fields'] as $field_id => $field): ?>
+<?php foreach ($form['fields'] as $field_id => $field): ?>
                 <label>
                     <p><?php print $field['label']; ?></p>
                     <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
                     <?php if (isset($field['error_msg'])): ?>
                         <p class="error"><?php print $field['error_msg']; ?></p>
-                    <?php endif; ?>
+                <?php endif; ?>
                 </label>
-            <?php endforeach; ?>
+<?php endforeach; ?>
 
             <!-- Buttons -->
-            <?php foreach ($form['buttons'] as $button_id => $button): ?>
+                <?php foreach ($form['buttons'] as $button_id => $button): ?>
                 <button name="action" value="<?php print $button_id; ?>">
-                    <?php print $button['text']; ?>
+                <?php print $button['text']; ?>
                 </button>
-            <?php endforeach; ?>
+<?php endforeach; ?>
         </form>
     </body>
 </html>
