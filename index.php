@@ -1,66 +1,83 @@
 <?php
 
 /**
- * Prevents HTML/JS/MYSQL injection
- * for all $form fields
- * & adds error messages if so
+ * Filters $_POST
+ * to form accordingly
+ * 
  * @param array $form
- * @return array Safe Input
+ * @return array safe input
  */
 function get_safe_input($form) {
     $filtro_parametrai = [
         'action' => FILTER_SANITIZE_SPECIAL_CHARS
     ];
-
+    
     foreach ($form['fields'] as $field_id => $value) {
         $filtro_parametrai[$field_id] = FILTER_SANITIZE_SPECIAL_CHARS;
     }
-
+    
     return filter_input_array(INPUT_POST, $filtro_parametrai);
 }
 
 /**
- * Check all form fields if they are not empty
- * & adds error messages if so
- * @param array $safe_input
+ * Validates form
+ * 
+ * @param array $input
  * @param array $form
- * @return type
+ * @throws Exception
  */
-function validate_not_empty($field_input, &$field) {
-    if ($field_input == '') {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'kad palikai @field tuscia!', [
-            '@field' => $field['label']
-        ]);
-    } else {
-        return true;
-    }
-}
-
-function validate_is_number($field_input, &$field) {
-    if (!is_numeric($field_input)) {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . ' @field ivestas ne skaicius!', [
-            '@field' => $field['label']
-        ]);
-    } else {
-        return true;
-    }
-}
-
 function validate_form($input, &$form) {
+    $success = true;
+    
     foreach ($form['fields'] as $field_id => &$field) {
-        foreach ($field['validators'] as $validator) {
+        foreach ($field['validate'] as $validator) {
             if (is_callable($validator)) {
                 if (!$validator($input[$field_id], $field)) {
+                    $success = false;
                     break;
                 }
             } else {
-                throw new Exception(strtr("@validator function not found!", [
+                throw new Exception(strtr('Not callable @validator function', [
                     '@validator' => $validator
                 ]));
             }
         }
+    }
+    
+    return $success;
+}
+
+/**
+ * Checks if field is empty
+ * 
+ * @param string $field_input
+ * @param array $field $form Field
+ * @return boolean
+ */
+function validate_not_empty($field_input, &$field) {
+    if (strlen($field_input) == 0) {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'kad palikai @field tuscia!', ['@field' => $field['label']
+        ]);
+    } else {
+        return true;
+    }
+}
+
+/**
+ * Checks if field is a number
+ * 
+ * @param string $field_input
+ * @param array $field $form Field
+ * @return boolean
+ */
+function validate_is_number($field_input, &$field) {
+    if (!is_numeric($field_input)) {
+        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
+                . 'nes @field nera skaicius!', ['@field' => $field['label']
+        ]);
+    } else {
+        return true;
     }
 }
 
@@ -70,28 +87,29 @@ $form = [
             'label' => 'Mano vardas',
             'type' => 'text',
             'placeholder' => 'Vardas',
-            'validators' => [
-                'validate_not_empty',
-                'validate_is_number'
-            ]
+            'validate' =>
+                [
+                'validate_not_empty'
+            ],
         ],
         'zirniu_kiekis' => [
             'label' => 'Kiek turiu zirniu?',
             'type' => 'text',
             'placeholder' => '1-100',
-            'validators' => [
+            'validate' =>
+                [
                 'validate_not_empty',
                 'validate_is_number'
-            ]
+            ],
         ],
         'paslaptis' => [
             'label' => 'Paslaptis, kodel turiu zirniu',
             'type' => 'password',
             'placeholder' => 'Issipasakok',
-            'validators' => [
+            'validate' =>
+                [
                 'validate_not_empty',
-                'validate_is_number'
-            ]
+            ],
         ]
     ],
     'buttons' => [
@@ -100,13 +118,11 @@ $form = [
         ]
     ]
 ];
-
 if (!empty($_POST)) {
     $safe_input = get_safe_input($form);
     validate_form($safe_input, $form);
 }
 ?>
-
 <html>
     <head>
         <title>02/11/2019</title>
@@ -118,10 +134,10 @@ if (!empty($_POST)) {
             <!-- Input Fields -->
             <?php foreach ($form['fields'] as $field_id => $field): ?>
                 <label>
-                    <span><?php print $field['label']; ?></span>
+                    <p><?php print $field['label']; ?></p>
                     <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
                     <?php if (isset($field['error_msg'])): ?>
-                        <span class="error"><?php print $field['error_msg']; ?></span>
+                        <p class="error"><?php print $field['error_msg']; ?></p>
                     <?php endif; ?>
                 </label>
             <?php endforeach; ?>
