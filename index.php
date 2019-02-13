@@ -21,7 +21,7 @@ function array_to_file($array, $file) {
  * @return type
  */
 function file_to_array($file) {
-    $back_array = json_decode($array, true);
+    $back_array = json_decode($file, true);
 
     return file_get_contents($file);
 }
