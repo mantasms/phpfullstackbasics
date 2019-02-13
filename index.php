@@ -16,6 +16,18 @@ function array_to_file($array, $file) {
 
 /**
  * 
+ * @param type $array
+ * @param type $file
+ * @return type
+ */
+function file_to_array($file) {
+    $back_array = json_decode($array, true);
+
+    return file_get_contents($file);
+}
+
+/**
+ * 
  * @param type $input
  * @return type
  */
@@ -99,7 +111,7 @@ if (!empty($_POST)) {
                         <p class="error"><?php print $field['error_msg']; ?></p>
                 <?php endif; ?>
                 </label>
-<?php endforeach; ?>
+            <?php endforeach; ?>
 
             <!-- Buttons -->
                 <?php foreach ($form['buttons'] as $button_id => $button): ?>
