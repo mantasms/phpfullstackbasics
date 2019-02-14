@@ -1,1 +1,0 @@
-{"action":"do_zirniai","vardas":"MANTAS","zirniu_kiekis":"35","paslaptis":"sddg"}
