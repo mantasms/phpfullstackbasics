@@ -30,18 +30,26 @@ function load_form_data() {
     // Build renderable array
     foreach ($file_data_arr as $user_input) {
         $stored_data[] = [
-                [
-                'title' => 'Kažkieno vardas',
-                'value' => $user_input['vardas']
+            [
+                'title' => 'klausimas1',
+                'value' => $user_input['klausimas1']
             ],
-                [
-                'title' => 'Turėjo žirnių',
-                'value' => $user_input['zirniu_kiekis']
+            [
+                'title' => 'klausimas2',
+                'value' => $user_input['klausimas2']
             ],
-                [
-                'title' => 'Jo paslaptis',
-                'value' => $user_input['paslaptis']
-            ]
+            [
+                'title' => 'klausimas3',
+                'value' => $user_input['klausimas3']
+            ],
+            [
+                'title' => 'klausimas4',
+                'value' => $user_input['klausimas4']
+            ],
+            [
+                'title' => 'klausimas5',
+                'value' => $user_input['klausimas5']
+            ],
         ];
     }
 
@@ -50,37 +58,55 @@ function load_form_data() {
 
 $form = [
     'fields' => [
-        'vardas' => [
-            'label' => 'Mano vardas',
+        'klausimas1' => [
+            'label' => 'klausimas 1',
             'type' => 'text',
-            'placeholder' => 'Vardas',
+            'placeholder' => 'rasyk ka nori 1',
             'validate' => [
                 'validate_not_empty'
             ],
         ],
-        'zirniu_kiekis' => [
-            'label' => 'kiek turi zirniu',
+        'klausimas2' => [
+            'label' => 'klausimas 2 number',
             'type' => 'text',
-            'placeholder' => '1-100',
+            'placeholder' => 'number',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
                 'validate_is_number'
             ],
         ],
-        'paslaptis' => [
-            'label' => 'Paslaptis, kodel turiu zirniu',
+        'klausimas3' => [
+            'label' => 'klausimas 3 password',
             'type' => 'password',
-            'placeholder' => 'Issipasakok',
+            'placeholder' => 'password',
             'validate' =>
-                [
+            [
                 'validate_not_empty',
             ],
-        ]
+        ],
+        'klausimas4' => [
+            'label' => 'klausimas 4',
+            'type' => 'text',
+            'placeholder' => 'rasyk ka nori 4',
+            'validate' =>
+            [
+                'validate_not_empty',
+            ],
+        ],
+        'klausimas5' => [
+            'label' => 'klausimas 5',
+            'type' => 'text',
+            'placeholder' => 'rasyk ka nori 5',
+            'validate' =>
+            [
+                'validate_not_empty',
+            ],
+        ],
     ],
     'buttons' => [
-        'do_zirniai' => [
-            'text' => 'Paberti...'
+        'atsakyk' => [
+            'text' => 'Nespausk'
         ]
     ],
     'callbacks' => [
@@ -109,24 +135,24 @@ $stored_data = load_form_data();
         <h1>Generuojam forma is array</h1>
         <form method="POST">
             <!-- Input Fields -->
-            <?php foreach ($form['fields'] as $field_id => $field): ?>
+<?php foreach ($form['fields'] as $field_id => $field): ?>
                 <label>
                     <p><?php print $field['label']; ?></p>
                     <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
-                    <?php if (isset($field['error_msg'])): ?>
+    <?php if (isset($field['error_msg'])): ?>
                         <p class="error"><?php print $field['error_msg']; ?></p>
                     <?php endif; ?>
                 </label>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
 
             <!-- Buttons -->
-            <?php foreach ($form['buttons'] as $button_id => $button): ?>
+<?php foreach ($form['buttons'] as $button_id => $button): ?>
                 <button name="action" value="<?php print $button_id; ?>">
-                    <?php print $button['text']; ?>
+                <?php print $button['text']; ?>
                 </button>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
         </form>
-        <?php foreach ($stored_data as $user_data): ?>
+            <?php foreach ($stored_data as $user_data): ?>
             <?php foreach ($user_data as $fields): ?>       
                 <p><?php print $fields['title'] . ': ' . $fields['value']; ?></p>
             <?php endforeach; ?>
