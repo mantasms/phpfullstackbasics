@@ -31,23 +31,23 @@ function load_form_data() {
     foreach ($file_data_arr as $user_input) {
         $stored_data[] = [
             [
-                'title' => 'klausimas1',
+                'title' => 'klausimas 1',
                 'value' => $user_input['klausimas1']
             ],
             [
-                'title' => 'klausimas2',
+                'title' => 'klausimas 2 number',
                 'value' => $user_input['klausimas2']
             ],
             [
-                'title' => 'klausimas3',
+                'title' => 'klausimas 3 password',
                 'value' => $user_input['klausimas3']
             ],
             [
-                'title' => 'klausimas4',
+                'title' => 'klausimas 4',
                 'value' => $user_input['klausimas4']
             ],
             [
-                'title' => 'klausimas5',
+                'title' => 'klausimas 5',
                 'value' => $user_input['klausimas5']
             ],
         ];
